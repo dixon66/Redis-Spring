@@ -25,12 +25,15 @@ public class ProductDao {
     }
 
     public Product findProductById(int id){
+
+        System.out.println("called findProductById from DB: "+id);
         return (Product) template.opsForHash().get(HASH_KEY,id);
     }
 
 
     public String deleteProduct(int id){
         template.opsForHash().delete(HASH_KEY,id);
+        System.out.println("Cache removed for "+id);
         return "product removed !!";
     }
 }
